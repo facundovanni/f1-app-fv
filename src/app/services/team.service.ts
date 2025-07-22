@@ -7,7 +7,7 @@ import { DataTableTeams, Team } from '../models/team.model';
 @Injectable({
   providedIn: 'root'
 })
-export class TeamsService {
+export class TeamService {
 
   private readonly baseUrl = 'https://f1api.dev/api'; // apunta a tu endpoint
 
@@ -17,8 +17,11 @@ export class TeamsService {
     return this.http.get<DataTableTeams>(`${this.baseUrl}/${year}/teams?limit=30`);
   }
 
-  /** GET un ítem por id */
   getItem(id: string): Observable<Team> {
     return this.http.get<Team>(`${this.baseUrl}/teams/${id}`);
+  }
+
+  getDriversByTeam(id: string, year: number): Observable<Team> {
+    return this.http.get<Team>(`${this.baseUrl}/${year}/teams/${id}/drivers`);
   }
 }

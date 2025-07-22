@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { ActionDef, ColumnDef, DataTableComponent } from '../components/data-table/data-table.component';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DataTableTeams, Team } from '../models/team.model';
-import { TeamsService } from '../services/team.service';
+import { TeamService } from '../services/team.service';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
+import { ColumnDef, ActionDef } from '../models/global.model';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [CommonModule, DataTableComponent, RouterLink, TeamDetailComponent],
+  imports: [CommonModule, TeamComponent, RouterLink, TeamDetailComponent],
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })
@@ -38,7 +38,7 @@ export class TeamComponent implements OnInit {
   season = 0;
   currentYear = true;
 
-  constructor(private teamService: TeamsService, private route: ActivatedRoute, private router: Router) {
+  constructor(private teamService: TeamService, private route: ActivatedRoute, private router: Router) {
   }
   
   ngOnInit(): void {
