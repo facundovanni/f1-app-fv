@@ -1,0 +1,5 @@
+<form [formGroup]="form">
+  <input nz-input placeholder="Año" formControlName="year" />
+  <input nz-input placeholder="Nombre O Apellido (≥4)" formControlName="name" />
+  <button nz-button nzType="primary" type="button" (click)="search()">Buscar</button>
+</form>

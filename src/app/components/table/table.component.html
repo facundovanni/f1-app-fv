@@ -1,0 +1,44 @@
+<nz-table
+  nzShowSizeChanger
+  [nzData]="data"
+  [nzFrontPagination]="false"
+  [nzLoading]="loading"
+  [nzTotal]="total"
+  [nzPageSize]="pageSize"
+  [nzPageIndex]="pageIndex"
+  (nzQueryParams)="onQueryParamsChange($event)"
+>
+  <thead>
+    <tr>
+      <th *ngFor="let col of columns"
+          [nzShowFilter]="!!col.filters"
+          [nzFilters]="col.filters || []"
+          [nzFilterMultiple]="col.filterMultiple !== false"
+          [nzShowSort]="col.sortable"
+          [nzSortKey]="col.sortable ? (col.key as string) : null">
+        {{ col.title }}
+      </th>
+      <th *ngIf="actions?.length">Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let row of data">
+      <td *ngFor="let col of columns">
+        <ng-container *ngIf="col.template; else defaultCell"
+                      [ngTemplateOutlet]="col.template"
+                      [ngTemplateOutletContext]="getContext(row)">
+        </ng-container>
+        <ng-template #defaultCell>{{ row[col.key] }}</ng-template>
+      </td>
+      <td *ngIf="actions?.length">
+        <button *ngFor="let act of actions"
+                nz-button nzType="link"
+                (click)="act.handler(row, extraContext)">
+          <i nz-icon [nzType]="act.icon"></i>
+          {{ act.label }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
