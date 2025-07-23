@@ -1,22 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { TeamComponent } from './team/team.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { DriverComponent } from 'src/app/driver/driver.component';
-import { NzButtonComponent, NzButtonModule } from 'ng-zorro-antd/button';
+import { ResultsComponent } from './results/results.component';
+import { TeamComponent } from './team/team.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TeamComponent, DriverComponent, NzIconModule, NzMenuModule, NzLayoutModule, RouterLink, RouterLinkActive, NzButtonModule],
+  imports: [CommonModule, RouterOutlet, TeamComponent, DriverComponent, ResultsComponent, NzIconModule, NzMenuModule, NzLayoutModule,
+    RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'f1-app-fv';
+
+  menuTheme = signal<'dark' | 'light'>('dark');
 
   menus = [
     {
@@ -51,6 +54,15 @@ export class AppComponent {
       selected: true,
       disabled: false,
       link: '/drivers'
+    },
+    {
+      level: 1,
+      title: 'Resultados',
+      icon: 'user',
+      open: false,
+      selected: true,
+      disabled: false,
+      link: '/results'
     }
   ];
 

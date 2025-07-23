@@ -1,21 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { DataTableTeams, Team } from '../models/team.model';
 import { TeamService } from '../services/team.service';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { ColumnDef, ActionDef } from '../models/global.model';
+import { TableComponent } from '../components/table/table.component';
+import { ActionCellComponent } from '../components/action-cell/action-cell.component';
+import { SeasonSelectComponent } from '../components/season-select/season-select.component';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [CommonModule, TeamComponent, RouterLink, TeamDetailComponent],
+  imports: [CommonModule, TableComponent,ActionCellComponent, RouterLink, TeamDetailComponent, SeasonSelectComponent],
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })
 export class TeamComponent implements OnInit {
 
   teams: Team[] = [];
+  isLoading = signal<boolean>(false);
 
   @ViewChild('actionTpl', { static: true }) actionTpl!: TemplateRef<{ $implicit: Team }>;
 
@@ -45,7 +49,7 @@ export class TeamComponent implements OnInit {
     const { current } = this.route.snapshot.data as { current: boolean };
     this.currentYear = current;
 
-    this.season = this.currentYear ? new Date().getFullYear() : 1991;
+    this.season = new Date().getFullYear();
     this.getTeams();
   }
 
@@ -61,5 +65,11 @@ export class TeamComponent implements OnInit {
   viewDetails(teamId: string): void {
     console.log('Ver detalles de', teamId, 'para la temporada', this.season);
     this.router.navigate(['/teams', teamId, 'season', this.season]);
+  }
+
+  onSeasonChange(year: number): void {
+    // this.selectedSeason.set(year);
+    this.season = year;
+    this.getTeams();
   }
 }

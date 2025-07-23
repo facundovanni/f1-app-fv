@@ -1,1 +1,20 @@
-<p>results works!</p>
+<nz-card>
+  <app-season-select [value]="selectedSeason()" (seasonChange)="onSeasonChange($event)" [disabled]="isLoading()"></app-season-select>
+</nz-card>
+<nz-spin [nzSpinning]="isLoading()">
+  <nz-row [nzGutter]="16" class="mt-4">
+    <nz-col [nzSpan]="12">
+      <nz-card nzTitle="Top 5 Pilotos">
+        <app-result-chart *ngIf="pilotStandings()?.length" [data]="pilotStandings()" [fieldCategory]="'driverName'"
+          [fieldValue]="'points'">
+        </app-result-chart>
+      </nz-card>
+    </nz-col>
+    <nz-col [nzSpan]="12">
+      <nz-card nzTitle="Top 5 Constructores">
+        <app-result-chart *ngIf="constructorStandings()?.length" [data]="constructorStandings()"
+          [fieldCategory]="'constructorName'" [fieldValue]="'points'"></app-result-chart>
+      </nz-card>
+    </nz-col>
+  </nz-row>
+</nz-spin>

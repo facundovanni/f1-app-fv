@@ -14,8 +14,8 @@ import { ColumnDef, ActionDef, Pagination, ServerQuery, Filter, Order } from 'sr
     NzButtonModule,
     NzIconModule
   ],
-  templateUrl: './fvtable.component.html',
-  styleUrls: ['./fvtable.component.scss']
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss']
 })
 export class TableComponent<T = any> {
   @Input() columns: ColumnDef<T>[] = [];

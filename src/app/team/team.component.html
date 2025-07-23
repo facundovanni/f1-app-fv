@@ -1,6 +1,7 @@
-<app-table
+  <app-season-select *ngIf="!currentYear" [value]="season" (seasonChange)="onSeasonChange($event)" [disabled]="isLoading()"></app-season-select>
+<!-- <app-table
   [columns]="columns"
   [data]="teams"
   [actions]="actions"
 >
-</app-table>
+</app-table> -->
