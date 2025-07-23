@@ -11,5 +11,7 @@ export interface Team {
 }
 
 export interface DataTableTeams extends DataTableResponse {
+  championshipId: string;
+  season: string;
   teams: Team[];
 }

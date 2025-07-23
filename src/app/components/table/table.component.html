@@ -3,9 +3,9 @@
   [nzData]="data"
   [nzFrontPagination]="false"
   [nzLoading]="loading"
-  [nzTotal]="total"
-  [nzPageSize]="pageSize"
-  [nzPageIndex]="pageIndex"
+  [nzTotal]="pagination.total"
+  [nzPageSize]="pagination.pageSize"
+  [nzPageIndex]="pagination.pageIndex"
   (nzQueryParams)="onQueryParamsChange($event)"
 >
   <thead>
@@ -15,7 +15,7 @@
           [nzFilters]="col.filters || []"
           [nzFilterMultiple]="col.filterMultiple !== false"
           [nzShowSort]="col.sortable"
-          [nzSortKey]="col.sortable ? (col.key as string) : null">
+          [nzColumnKey]="col.key">
         {{ col.title }}
       </th>
       <th *ngIf="actions?.length">Acciones</th>

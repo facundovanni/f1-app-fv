@@ -19,7 +19,7 @@ export interface Order {
 }
 
 export interface ColumnDef<T> {
-  key: keyof T;
+  key: keyof T & string;
   title: string;
   template?: TemplateRef<{ $implicit: T;[key: string]: any }>;
   filters?: Filter[];
@@ -46,4 +46,6 @@ export interface ServerQuery {
   size: number;
   sort?: Order[] | undefined;
   filters?: any;//Record<string, (string | number | boolean)[]>;
+  search?: string;
+  searchBy?: string[];
 }

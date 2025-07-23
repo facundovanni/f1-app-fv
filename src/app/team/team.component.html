@@ -1,6 +1,10 @@
 <app-table
   [columns]="columns"
-  [data]="teams"
   [actions]="actions"
->
-</app-table>
+  [data]="data"
+  [loading]="loading"  
+></app-table>
+
+<ng-template #urlTemplate let-row>
+  <a [href]="row.url" target="_blank" rel="noopener noreferrer">🔗 Link</a>
+</ng-template>

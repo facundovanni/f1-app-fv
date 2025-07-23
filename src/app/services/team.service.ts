@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DataTableResponse } from '../models/global.model';
+import { DataTableResponse, ServerQuery } from '../models/global.model';
 import { DataTableTeams, Team } from '../models/team.model';
 
 @Injectable({
@@ -13,8 +13,10 @@ export class TeamService {
 
   constructor(private http: HttpClient) {}
 
-  getItems(year: number): Observable<DataTableTeams> {
-    return this.http.get<DataTableTeams>(`${this.baseUrl}/${year}/teams?limit=30`);
+  getItems(q: ServerQuery, year: number): Observable<DataTableTeams> {
+    const pageIndex = (q.page-1)* q.size;
+
+    return this.http.get<DataTableTeams>(`${this.baseUrl}/${year}/teams?limit=${q.size}&offset=${pageIndex}`);
   }
 
   getItem(id: string): Observable<Team> {

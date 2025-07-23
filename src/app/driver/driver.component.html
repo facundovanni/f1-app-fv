@@ -1,1 +1,14 @@
-<p>driver works!</p>
+
+<app-driver-search-form (searchData)="search($event)"></app-driver-search-form>
+<app-table
+  [columns]="columns"
+  [actions]="actions"
+  [data]="data"
+  [loading]="loading" 
+  [pagination]="pagination"
+  (searchData)="search($event)">
+</app-table>
+
+<ng-template #urlTemplate let-row>
+  <a *ngIf="row.url" [href]="row.url" target="_blank" rel="noopener noreferrer">🔗 Ver</a>
+</ng-template>
