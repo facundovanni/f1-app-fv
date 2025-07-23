@@ -11,7 +11,7 @@ import { TeamComponent } from './team/team.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, TeamComponent, DriverComponent, ResultsComponent, NzIconModule, NzMenuModule, NzLayoutModule,
+  imports: [CommonModule, RouterOutlet, TeamComponent, DriverComponent, ResultsComponent, NzIconModule , NzMenuModule, NzLayoutModule,
     RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
@@ -25,7 +25,7 @@ export class AppComponent {
     {
       level: 1,
       title: 'Equipos',
-      icon: 'upload',
+      icon: 'team',
       open: true,
       selected: false,
       disabled: false,
@@ -58,7 +58,7 @@ export class AppComponent {
     {
       level: 1,
       title: 'Resultados',
-      icon: 'user',
+      icon: 'bar-chart',
       open: false,
       selected: true,
       disabled: false,

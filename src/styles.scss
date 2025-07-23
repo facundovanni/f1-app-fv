@@ -1,0 +1,63 @@
+/* ====== F1 Dark Palette ====== */
+:root {
+    /* Base / superficies */
+    --f1-bg:          #141414; // fondo principal (match ng-zorro dark)
+    --f1-surface:     #1f1f1f; // cards / sider
+    --f1-surface-2:   #262626; // submenús / bloques secundarios
+    --f1-border:      #303030; // bordes/hover
+    --f1-overlay:     #000000e6;
+  
+    /* Texto */
+    --f1-text:        #f5f5f5;
+    --f1-text-2:      #bfbfbf;
+    --f1-text-muted:  #8c8c8c;
+  
+    /* Colores F1 */
+    --f1-primary:     #e10600; // rojo F1
+    --f1-primary-hover:#ff2a1f;
+    --f1-primary-active:#b70000;
+    --f1-accent:      #ffec00; // amarillo bandera
+    --f1-accent-blue: #00a3ff; // telemetría
+    --f1-success:     #00c781;
+    --f1-warning:     #faad14;
+    --f1-error:       #ff4d4f;
+  }
+  
+  /* Overrides mínimos NG-Zorro (dark) */
+  :root {
+    --ant-primary-color:            var(--f1-primary);
+    --ant-primary-color-hover:      var(--f1-primary-hover);
+    --ant-primary-color-active:     var(--f1-primary-active);
+  
+    --ant-text-color:               var(--f1-text);
+    --ant-text-color-secondary:     var(--f1-text-2);
+    --ant-heading-color:            var(--f1-text);
+  
+    --ant-border-color:             var(--f1-border);
+    --ant-bg-color:                 var(--f1-bg);
+    --ant-component-background:     var(--f1-surface);
+  }
+  
+//   body {
+//     background: var(--f1-bg);
+//     color: var(--f1-text);
+//   }
+  
+//   .ant-card {
+//     background: var(--f1-surface);
+//     border-color: var(--f1-border);
+//     color: var(--f1-text);
+//   }
+  
+//   .f1-menu.ant-menu-dark {
+//     background: var(--f1-surface) !important;
+//     color: var(--f1-text) !important;
+//   }
+//   .f1-menu.ant-menu-dark .ant-menu-sub {
+//     background: var(--f1-surface-2) !important;
+//   }
+//   .f1-menu.ant-menu-dark .ant-menu-item-selected {
+//     background: var(--f1-primary) !important;
+//     color: #fff !important;
+//   }
+  

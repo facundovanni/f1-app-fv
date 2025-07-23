@@ -1,7 +1,10 @@
-  <app-season-select *ngIf="!currentYear" [value]="season" (seasonChange)="onSeasonChange($event)" [disabled]="isLoading()"></app-season-select>
-<!-- <app-table
+<nz-card *ngIf="!currentYear">
+  <app-season-select [value]="season" (seasonChange)="onSeasonChange($event)" [disabled]="isLoading()"></app-season-select>
+</nz-card>
+  
+<app-table
   [columns]="columns"
   [data]="teams"
   [actions]="actions"
 >
-</app-table> -->
+</app-table>

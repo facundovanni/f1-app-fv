@@ -8,11 +8,12 @@ import { ColumnDef, ActionDef } from '../models/global.model';
 import { TableComponent } from '../components/table/table.component';
 import { ActionCellComponent } from '../components/action-cell/action-cell.component';
 import { SeasonSelectComponent } from '../components/season-select/season-select.component';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [CommonModule, TableComponent,ActionCellComponent, RouterLink, TeamDetailComponent, SeasonSelectComponent],
+  imports: [CommonModule, TableComponent,ActionCellComponent, RouterLink, TeamDetailComponent, SeasonSelectComponent,NzCardModule],
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })

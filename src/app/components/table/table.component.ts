@@ -35,31 +35,6 @@ export class TableComponent<T = any> {
 
     @Output() queryChange = new EventEmitter<ServerQuery>();
   
-    onQueryParamsChange(params: NzTableQueryParams): void {
-      const { pageSize, pageIndex, sort, filter } = params;
-  
-      const sorts: Order[] = sort
-        .filter(s => s.value)
-        .map(s => ({
-          field: s.key as string,
-          dir: s.value === 'ascend' ? 'asc' : 'desc'
-        }));
-  
-      const combinedFilters = {
-        ...(filter ?? {}),
-        ...(this.externalFilters ?? {})
-      };
-  
-      const query: ServerQuery = {
-        page: pageIndex,
-        size: pageSize,
-        sort: sorts.length ? sorts : undefined,
-        filters: Object.keys(combinedFilters).length ? combinedFilters : undefined
-      };
-  
-      this.queryChange.emit(query);
-    }
-    
   getContext(row: T): { $implicit: T } & Record<string, any> {
     return { $implicit: row, ...this.extraContext };
   }

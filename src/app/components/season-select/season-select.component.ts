@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Input, Output, forwardRef, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, EventEmitter, Input, Output, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { SeasonsService } from 'src/app/services/season.service';
+import { SeasonService } from 'src/app/services/season.service';
 
 @Component({
   selector: 'app-season-select',
@@ -22,7 +22,7 @@ export class SeasonSelectComponent {
   seasons = signal<number[]>([]);
   loading = signal<boolean>(true);
   
-  private service = inject(SeasonsService);
+  private service = inject(SeasonService);
 
   constructor() {
     this.service.getSeasons().subscribe({
