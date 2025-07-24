@@ -1,0 +1,28 @@
+<button
+  nz-button
+  nzType="default"
+  (click)="goBack()"
+  style="margin-bottom: 16px"
+>
+  <i nz-icon nzType="arrow-left"></i>
+  Volver
+</button>
+<nz-skeleton
+  *ngIf="isLoading()"
+  [nzActive]="true"
+  [nzParagraph]="{ rows: 4 }"
+></nz-skeleton>
+<ng-container *ngIf="!isLoading()">
+  <nz-card nzBordered class="driver-card">
+    <div class="card-content">
+      <div class="info">
+        <h1>
+          {{ data()?.name }} {{ data()?.surname }}
+          <small>#{{ data()?.number }}</small>
+        </h1>
+        <h4>Nacionalidad: {{ data()?.nationality }}</h4>
+        <a *ngIf="data()?.url" [href]="data()?.url" target="_blank" rel="noopener noreferrer">🔗 Ver</a>
+      </div>
+    </div>
+  </nz-card>
+</ng-container>

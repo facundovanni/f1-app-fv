@@ -1,5 +1,7 @@
+<nz-card>
+  <app-driver-search (searchData)="search($event)"></app-driver-search>
+</nz-card>
 
-<app-driver-search-form (searchData)="search($event)"></app-driver-search-form>
 <app-table
   [columns]="columns"
   [actions]="actions"

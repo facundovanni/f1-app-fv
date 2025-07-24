@@ -1,0 +1,62 @@
+<button
+  nz-button
+  nzType="default"
+  (click)="goBack()"
+  style="margin-bottom: 16px;"
+>
+  <i nz-icon nzType="arrow-left"></i>
+  Volver
+</button>
+<nz-skeleton
+  *ngIf="isLoading()"
+  [nzActive]="true"
+  [nzParagraph]="{ rows: 4 }"
+></nz-skeleton>
+<ng-container *ngIf="!isLoading()">
+  <nz-card nzBordered class="driver-card">
+    <div class="card-content">
+      <div class="info">
+        <h1>{{ teamDetails()?.team?.teamName }}</h1>
+        <h4>Nacionalidad: {{ teamDetails()?.team?.teamNationality }}</h4>
+        <h4>Debut: {{ teamDetails()?.team?.firstAppeareance }}</h4>
+      </div>
+    </div>
+  </nz-card>
+  <nz-card nzBordered class="driver-card">
+    <div class="card-content">
+      <div class="info">
+        <h1>Pilotos de la temporada {{year}} </h1>
+      </div>
+    </div>
+  </nz-card>
+  <ng-container
+    *ngIf="(teamDetails()?.drivers?.length ?? 0) > 0; else emptyTpl"
+  >
+    <div nz-row [nzGutter]="16">
+      <div nz-col [nzSpan]="12" *ngFor="let d of teamDetails()?.drivers">
+        <nz-card nzBordered class="driver-card">
+          <div class="card-content">
+            <div class="info">
+              <h4>
+                {{ d.driver.name }} {{ d.driver.surname }}
+                <small>#{{ d.driver.number }}</small>
+              </h4>
+              <p>{{ d.driver.nationality }}</p>
+              <p *ngIf="d.driver.points != null">
+                Puntos: {{ d.driver.points }}
+              </p>
+              <p *ngIf="d.driver.wins != null">
+                Victorias: {{ d.driver.wins }}
+              </p>
+            </div>
+          </div>
+        </nz-card>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-template #emptyTpl>
+  <nz-empty
+    nzNotFoundContent="No se encontraron pilotos para ese equipo/año."
+  ></nz-empty>
+</ng-template>

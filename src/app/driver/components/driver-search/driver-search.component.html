@@ -1,0 +1,32 @@
+<div nz-form nzLayout="inline" class="filters">
+  <nz-form-item>
+    <nz-form-control>
+      <app-season-select
+        [value]="year()"
+        (seasonChange)="onSearchYear($event)"
+        [allowClear]="true">
+      </app-season-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label>Nombre/Apellido:</nz-form-label>
+    <nz-form-control>
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixBtn">
+        <input
+          nz-input
+          #q
+          placeholder="Nombre O Apellido (≥4)">
+      </nz-input-group>
+      <ng-template #suffixBtn>
+        <button
+          nz-button
+          nzType="primary"
+          nzSearch
+          (click)="onSearchName(q.value)"
+          >
+          <span nz-icon nzType="search"></span>
+        </button>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+</div>

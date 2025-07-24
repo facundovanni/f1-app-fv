@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DataTableResponse, ServerQuery } from '../models/global.model';
-import { DataTableTeams, Team } from '../models/team.model';
+import { ServerQuery } from '../models/global.model';
+import { DataTableTeams, Team, TeamDetails } from '../models/team.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,9 @@ export class TeamService {
     return this.http.get<Team>(`${this.baseUrl}/teams/${id}`);
   }
 
-  getDriversByTeam(id: string, year: number): Observable<Team> {
-    return this.http.get<Team>(`${this.baseUrl}/${year}/teams/${id}/drivers`);
+  getDriversByTeam(id: string, year: number): Observable<TeamDetails> {
+    return this.http.get<TeamDetails>(`${this.baseUrl}/${year}/teams/${id}/drivers`);
   }
+
+  
 }

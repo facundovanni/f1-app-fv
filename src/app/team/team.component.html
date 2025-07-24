@@ -1,8 +1,12 @@
+<nz-card *ngIf="!currentYear">
+  <app-season-select [value]="season" (seasonChange)="onSeasonChange($event)" [disabled]="isLoading()" [isHistoric]="!currentYear"></app-season-select>
+</nz-card>
+  
 <app-table
   [columns]="columns"
   [actions]="actions"
   [data]="data"
-  [loading]="loading"  
+  [loading]="isLoading()"  
 ></app-table>
 
 <ng-template #urlTemplate let-row>

@@ -1,0 +1,17 @@
+<label >Temporada: </label>
+<nz-select
+  [(ngModel)]="value"
+  (ngModelChange)="onSelect($event)"
+  [nzDisabled]="disabled"
+  [nzLoading]="loading()"
+  [style.width]="width"
+  [nzAllowClear]="allowClear"
+  >
+
+  <nz-option
+    *ngFor="let year of seasons()"
+    [nzValue]="year"
+    [nzLabel]="year">
+  </nz-option>
+</nz-select>
+<label *ngIf="currentLabel()"> * En curso</label>

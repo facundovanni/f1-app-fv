@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DataTableDrivers, Driver, DriverSearchParams } from '../models/driver.model';
+import { DataTableDrivers, Driver, DriverDetail, DriverSearchParams } from '../models/driver.model';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { DataTableResponse, ServerQuery } from '../models/global.model';
@@ -43,6 +43,10 @@ export class DriverService {
     }
 
     return this.searchQ(q, p);
+  }
+
+  getDriver(id: string): Observable<DriverDetail>{
+     return this.http.get<DriverDetail>(`${this.baseUrl}/drivers/${id}`)
   }
 
   private filterLocal(data: Driver[], p: DriverSearchParams): Driver[] {

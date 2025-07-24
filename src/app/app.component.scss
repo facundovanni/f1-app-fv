@@ -1,28 +1,69 @@
 .layout {
-        min-height: 100vh;
-      }
+  min-height: 100vh;
+}
 
-      .logo {
-        height: 32px;
-        background: rgba(255, 255, 255, 0.2);
-        margin: 16px;
-      }
+.logo {
+  height: 32px;
+  margin: 16px;
+}
 
-      nz-header {
-        background: #fff;
-        padding: 0;
-      }
+nz-header {
+  padding: 0;
 
-      nz-content {
-        margin: 24px 16px 0;
-      }
 
-      .inner-content {
-        padding: 24px;
-        background: #fff;
-        min-height: 360px;
-      }
+}
 
-      nz-footer {
-        text-align: center;
-      }
+nz-content {
+  margin: 24px 16px 0;
+}
+
+.inner-content {
+  padding: 24px;
+  min-height: 360px;
+}
+
+/* Usa tus vars: --f1-red, --f1-text, --f1-grey */
+.f1-header-title {
+  margin: 0;
+  font-family: 'Orbitron', 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  color: var(--f1-text);
+  position: relative;
+  display: inline-block;
+  font-size: clamp(18px, 4vw, 32px);
+  line-height: 1.1;
+
+  /* Barra roja inclinada atrás */
+  &::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    bottom: -6px;
+    width: 110%;
+    height: 6px;
+    background: var(--f1-red);
+    transform: skewX(-20deg);
+    z-index: -1;
+  }
+
+  /* Línea fina gris arriba (detalle) */
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 60px;
+    height: 2px;
+    background: var(--f1-grey);
+    transform: skewX(-20deg);
+  }
+
+  .f1-accent {
+    color: var(--f1-red);
+  }
+}
+
+
+nz-footer {
+  text-align: center;
+}

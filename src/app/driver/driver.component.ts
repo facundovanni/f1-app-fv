@@ -6,12 +6,13 @@ import { DriverService } from '../services/driver.service';
 import { ColumnDef, ActionDef, ServerQuery, Pagination } from '../models/global.model';
 import { TableComponent } from '../components/table/table.component';
 import { ActionCellComponent } from '../components/action-cell/action-cell.component';
-import { DriverSearchFormComponent } from './components/driver-search-form/driver-search-form.component';
+import { DriverSearchComponent } from './components/driver-search/driver-search.component';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 @Component({
   selector: 'app-driver',
   standalone: true,
-  imports: [CommonModule, TableComponent, ActionCellComponent, DriverSearchFormComponent],
+  imports: [CommonModule, TableComponent, ActionCellComponent, DriverSearchComponent, NzCardModule],
   templateUrl: './driver.component.html',
   styleUrls: ['./driver.component.scss']
 })
@@ -28,8 +29,7 @@ export class DriverComponent implements OnInit {
       label: 'Ver',
       icon: 'eye',
       handler: (row) => {
-        // this.viewDetails(row.driverId);
-
+        this.viewDetails(row.driverId);
       }
     }
   ];
@@ -63,8 +63,7 @@ export class DriverComponent implements OnInit {
     this.getDrivers(this.query, data)
   }
 
-  // viewDetails(driverId: string): void {
-  //   console.log('Ver detalles de', driverId, 'para la temporada', this.season);
-  //   this.router.navigate(['/drivers', driverId, 'season', this.season]);
-  // }
+  viewDetails(driverId: string): void {
+    this.router.navigate(['/drivers', driverId]);
+  }
 }
