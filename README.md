@@ -11,10 +11,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Instalación
 ```bash
-yarn  # o npm install
-
-#### Levantar la app
+ yarn  # o npm install
+```
+### Levantar la app
+```bash
 yarn start  # o npm start
+```
 Navegar a `http://localhost:4200/`
 
 ## Development server
