@@ -1,14 +1,15 @@
-<nz-card *ngIf="!currentYear">
-  <app-season-select [value]="season()" (seasonChange)="onSeasonChange($event)" [disabled]="isLoading()" [isHistoric]="!currentYear"></app-season-select>
+<nz-card *ngIf="!currentYear()">
+  <app-season-select [value]="season()" (seasonChange)="onSeasonChange($event)" [disabled]="isLoading()" [isHistoric]="!currentYear()"></app-season-select>
 </nz-card>
   
 <app-table
   [columns]="columns"
   [actions]="actions"
   [data]="data()"
-  [loading]="isLoading()"  
+  [loading]="isLoading()"
+  (queryChange)="onQueryChange($event)"
 ></app-table>
 
 <ng-template #urlTemplate let-row>
-  <a [href]="row.url" target="_blank" rel="noopener noreferrer">🔗 Link</a>
+  <a *ngIf="row.url" [href]="row.url" target="_blank" rel="noopener noreferrer">🔗 Ver</a>
 </ng-template>

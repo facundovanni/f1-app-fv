@@ -9,11 +9,12 @@ import { TableComponent } from '../components/table/table.component';
 import { ActionDef, ColumnDef, Pagination, ServerQuery } from '../models/global.model';
 import { DriverService } from '../services/driver.service';
 import { DriverSearchComponent } from './components/driver-search/driver-search.component';
+import { DriverDetailComponent } from './components/driver-detail/driver-detail.component';
 
 @Component({
   selector: 'app-driver',
   standalone: true,
-  imports: [CommonModule, TableComponent, ActionCellComponent, DriverSearchComponent, NzCardModule],
+  imports: [CommonModule, TableComponent, ActionCellComponent, DriverSearchComponent, NzCardModule, DriverDetailComponent],
   templateUrl: './driver.component.html',
   styleUrls: ['./driver.component.scss']
 })
@@ -41,8 +42,8 @@ export class DriverComponent implements OnInit {
 
   ngOnInit(): void {
     this.columns = [
-      { key: 'name', title: 'Nombre', sortable: true },
-      { key: 'surname', title: 'Apellido', sortable: true },
+      { key: 'name', title: 'Nombre'},
+      { key: 'surname', title: 'Apellido'},
       { key: 'url', title: 'Url', template: this.urlTpl }
     ];
     this.getDrivers(this.query);

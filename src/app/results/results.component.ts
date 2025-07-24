@@ -53,6 +53,8 @@ export class ResultsComponent {
       },
       error: (err) => {
         this.noti.error('Error al cargar datos', err.message);
+         this.pilotStandings.set([]);
+        this.constructorStandings.set([]);
         this.isLoading.set(false)
       },
     });
