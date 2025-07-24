@@ -14,11 +14,11 @@ export class ResultsService {
 
   getPilotStandings(season: number): Observable<any[]> {
     return this.http.get<{drivers_championship: DriverChampionshipStanding[]}>(`${this.base}/${season}/drivers-championship`)
-      .pipe(map(res => res.drivers_championship.map(c => ({...c, driverName: c.driver.surname})).slice(0, 5)));
+      .pipe(map(res => res.drivers_championship.map(c => ({...c, driverName: c.driver?.surname})).slice(0, 5)));
   }
 
   getConstructorStandings(season: number): Observable<any[]> {
     return this.http.get<{constructors_championship: TeamChampionshipStanding[]}>(`${this.base}/${season}/constructors-championship`)
-      .pipe(map(res => res.constructors_championship.map(c => ({...c, teamName: c.team.teamName})).slice(0, 5)));
+      .pipe(map(res => res.constructors_championship.map(c => ({...c, teamName: c.team?.teamName})).slice(0, 5)));
   }
 }

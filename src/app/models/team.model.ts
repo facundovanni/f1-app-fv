@@ -23,14 +23,14 @@ export interface TeamChampionshipStanding {
   points: number;
   position: number;
   wins: number;
-  team: Team;
+  team?: Team;
   teamName: string;
 }
 
 export interface TeamDetails extends DataTableResponse {
   season: number;
   teamId: string;
-  team: Team;
+  team?: Team;
   drivers: {
     driver: Driver
   }[]

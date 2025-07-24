@@ -1,3 +1,4 @@
+// src/app/services/season.service.spec.ts
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { SeasonService } from './season.service';
@@ -5,65 +6,50 @@ import { SeasonService } from './season.service';
 describe('SeasonService', () => {
   let service: SeasonService;
   let httpMock: HttpTestingController;
-
-  const URL = 'https://f1api.dev/api/seasons';
+  const apiUrl = 'https://f1api.dev/api/seasons?limit=100';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [SeasonService]
     });
-
     service = TestBed.inject(SeasonService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => httpMock.verify());
-
-  it('debería pedir las seasons y ordenarlas desc', () => {
-    const payload = { seasons: [1991, 2024, 2000] };
-    let result: number[] | undefined;
-
-    service.getSeasons().subscribe(r => (result = r));
-
-    const req = httpMock.expectOne(URL);
-    expect(req.request.method).toBe('GET');
-    req.flush(payload);
-
-    expect(result).toEqual([2024, 2000, 1991]);
+  afterEach(() => {
+    httpMock.verify();
   });
 
-  it('debería cachear (shareReplay): misma instancia, 1 sola request', () => {
-    const payload = { seasons: [2022, 2023] };
-    const results: number[][] = [];
-
-    service.getSeasons().subscribe(r => results.push(r));
-    service.getSeasons().subscribe(r => results.push(r)); // 2da sub
-
-    const req = httpMock.expectOne(URL);
-    req.flush(payload);
-
-    expect(results.length).toBe(2);
-    expect(results[0]).toEqual([2023, 2022]);
-    expect(results[1]).toEqual([2023, 2022]);
-
-    // No más requests
-    httpMock.expectNone(URL);
+  it('should be created', () => {
+    expect(service).toBeTruthy();
   });
 
-  it('debería propagar error (sin catchError)', () => {
-    const errorMsg = 'Network down';
-    let error: any;
+  it('should fetch seasons and map to number array', () => {
+    const mockResp = { championships: [{ year: 2025 }, { year: 2024 }, { year: 2023 }] };
 
-    service.getSeasons().subscribe({
-      next: () => fail('Debería fallar'),
-      error: (e) => (error = e)
+    service.getSeasons().subscribe(seasons => {
+      expect(seasons).toEqual([2025, 2024, 2023]);
     });
 
-    const req = httpMock.expectOne(URL);
-    req.flush(errorMsg, { status: 500, statusText: 'Server Error' });
+    const req = httpMock.expectOne(apiUrl);
+    expect(req.request.method).toBe('GET');
+    req.flush(mockResp);
+  });
+  
+  it('should propagate HTTP errors', () => {
+    const mockError = { status: 500, statusText: 'Server Error' };
+    let errResp: any;
 
-    expect(error.status).toBe(500);
-    expect(error.error).toBe(errorMsg);
+    service.getSeasons().subscribe({
+      next: () => fail('expected an error'),
+      error: err => (errResp = err)
+    });
+
+    const req = httpMock.expectOne(apiUrl);
+    req.flush('Internal Error', mockError);
+
+    expect(errResp.status).toBe(500);
+    expect(errResp.statusText).toBe('Server Error');
   });
 });

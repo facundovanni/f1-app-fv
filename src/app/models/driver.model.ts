@@ -36,6 +36,6 @@ export interface DriverChampionshipStanding {
   points: number,
   position: number,
   wins: number,
-  driver: Driver,
+  driver?: Driver,
   driverName: string
 }

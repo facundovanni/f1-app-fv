@@ -1,11 +1,11 @@
 <nz-card *ngIf="!currentYear">
-  <app-season-select [value]="season" (seasonChange)="onSeasonChange($event)" [disabled]="isLoading()" [isHistoric]="!currentYear"></app-season-select>
+  <app-season-select [value]="season()" (seasonChange)="onSeasonChange($event)" [disabled]="isLoading()" [isHistoric]="!currentYear"></app-season-select>
 </nz-card>
   
 <app-table
   [columns]="columns"
   [actions]="actions"
-  [data]="data"
+  [data]="data()"
   [loading]="isLoading()"  
 ></app-table>
 

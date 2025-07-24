@@ -17,8 +17,6 @@ import { TeamComponent } from './team/team.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'f1-app-fv';
-
   menuTheme = signal<'dark' | 'light'>('dark');
 
   menus = [

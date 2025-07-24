@@ -21,7 +21,10 @@ export class ResultChartComponent  implements OnChanges {
 
   ngOnChanges(_: SimpleChanges): void {
     const categories = (this.data ?? []).map(d => d?.[this.fieldCategory] ?? '');
-    const values = (this.data ?? []).map(d => Number(d?.[this.fieldValue] ?? 0));
+    const values = (this.data ?? []).map(d => {
+      const raw = Number(d?.[this.fieldValue] ?? 0);
+      return isNaN(raw) ? 0 : raw;
+    });
 
     this.chart = {
       ...this.chart,

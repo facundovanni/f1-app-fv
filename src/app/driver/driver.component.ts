@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DataTableDrivers, Driver, DriverSearchParams } from 'src/app/models/driver.model';
-import { DriverService } from '../services/driver.service';
-import { ColumnDef, ActionDef, ServerQuery, Pagination } from '../models/global.model';
-import { TableComponent } from '../components/table/table.component';
-import { ActionCellComponent } from '../components/action-cell/action-cell.component';
-import { DriverSearchComponent } from './components/driver-search/driver-search.component';
+import { Router } from '@angular/router';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { DataTableDrivers, Driver, DriverSearchParams } from 'src/app/models/driver.model';
+import { ActionCellComponent } from '../components/action-cell/action-cell.component';
+import { TableComponent } from '../components/table/table.component';
+import { ActionDef, ColumnDef, Pagination, ServerQuery } from '../models/global.model';
+import { DriverService } from '../services/driver.service';
+import { DriverSearchComponent } from './components/driver-search/driver-search.component';
 
 @Component({
   selector: 'app-driver',
@@ -35,7 +36,7 @@ export class DriverComponent implements OnInit {
   ];
   pagination: Pagination = { pageIndex: 1, pageSize: 30, total: 0 }; // Hay un error en la api que al mandar limit menor no trae el total
   query: ServerQuery = { page: this.pagination.pageIndex, size: this.pagination.pageSize };
-  constructor(private driverService: DriverService, private route: ActivatedRoute, private router: Router) {
+  constructor(private driverService: DriverService, private router: Router, private noti: NzNotificationService) {
   }
 
   ngOnInit(): void {
@@ -52,11 +53,17 @@ export class DriverComponent implements OnInit {
     this.query = q;
     this.loading = true;
     this.driverService.getItems(q, data)
-      .subscribe((response: DataTableDrivers) => {
-        this.data = response.drivers;
-        this.pagination = { pageIndex: q.page, pageSize: q.size, total: response.total };
-        this.loading = false;
-      })
+      .subscribe({
+        next: (response: DataTableDrivers) => {
+          this.data = response.drivers;
+          this.pagination = { pageIndex: q.page, pageSize: q.size, total: response.total };
+          this.loading = false;
+        },
+        error: (err) => {
+          this.noti.error('Error al cargar los datos', err.message);
+          this.loading = false
+        }
+      });
   }
 
   search(data: any) {
