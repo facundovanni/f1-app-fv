@@ -23,7 +23,7 @@ import { TeamChampionshipStanding } from '../models/team.model';
     NzGridModule,
     NzSpinModule,
     ResultChartComponent,
-  SeasonSelectComponent],
+    SeasonSelectComponent],
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss']
 })
@@ -41,19 +41,19 @@ export class ResultsComponent {
 
   loadData(season: number): void {
     this.isLoading.set(true);
-    
+
     forkJoin({
       pilots: this.resultSrv.getPilotStandings(season),
       constructors: this.resultSrv.getConstructorStandings(season)
     }).subscribe({
-      next: ({ pilots, constructors}) => {
+      next: ({ pilots, constructors }) => {
         this.pilotStandings.set(pilots);
         this.constructorStandings.set(constructors);
         this.isLoading.set(false);
       },
       error: (err) => {
         this.noti.error('Error al cargar datos', err.message);
-         this.pilotStandings.set([]);
+        this.pilotStandings.set([]);
         this.constructorStandings.set([]);
         this.isLoading.set(false)
       },

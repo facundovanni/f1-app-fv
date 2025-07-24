@@ -78,6 +78,7 @@ export class TeamComponent implements OnInit{
         this.isLoading.set(false);
       },
       error: err => {
+        this.data.set([]);
         this.noti.error('Error al cargar', err.message);
         this.isLoading.set(false);
       }

@@ -10,6 +10,7 @@ import { ActionDef, ColumnDef, Pagination, ServerQuery } from '../models/global.
 import { DriverService } from '../services/driver.service';
 import { DriverSearchComponent } from './components/driver-search/driver-search.component';
 import { DriverDetailComponent } from './components/driver-detail/driver-detail.component';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-driver',
@@ -62,6 +63,7 @@ export class DriverComponent implements OnInit {
         },
         error: (err) => {
           this.noti.error('Error al cargar los datos', err.message);
+          this.data = [];
           this.loading = false
         }
       });
