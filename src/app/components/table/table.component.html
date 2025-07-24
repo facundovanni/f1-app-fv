@@ -1,44 +1,54 @@
-<nz-table
-  nzShowSizeChanger
-  [nzData]="data"
-  [nzFrontPagination]="false"
-  [nzLoading]="loading"
-  [nzTotal]="pagination.total"
-  [nzPageSize]="pagination.pageSize"
-  [nzPageIndex]="pagination.pageIndex"
-  (nzQueryParams)="onQueryParamsChange($event)"
->
-  <thead>
-    <tr>
-      <th *ngFor="let col of columns"
+<div class="table-wrapper">
+  <nz-table
+    nzShowSizeChanger
+    [nzData]="data"
+    [nzFrontPagination]="false"
+    [nzLoading]="loading"
+    [nzTotal]="pagination.total"
+    [nzPageSize]="pagination.pageSize"
+    [nzPageIndex]="pagination.pageIndex"
+    [nzScroll]="{ x: '1000px' }"
+    (nzQueryParams)="onQueryParamsChange($event)"
+  >
+    <thead>
+      <tr>
+        <th
+          *ngFor="let col of columns"
           [nzShowFilter]="!!col.filters"
           [nzFilters]="col.filters || []"
           [nzFilterMultiple]="col.filterMultiple !== false"
           [nzShowSort]="col.sortable"
-          [nzColumnKey]="col.key">
-        {{ col.title }}
-      </th>
-      <th *ngIf="actions?.length">Acciones</th>
-    </tr>
-  </thead>
+          [nzColumnKey]="col.key"
+        >
+          {{ col.title }}
+        </th>
+        <th *ngIf="actions?.length">Acciones</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <tr *ngFor="let row of data">
-      <td *ngFor="let col of columns">
-        <ng-container *ngIf="col.template; else defaultCell"
-                      [ngTemplateOutlet]="col.template"
-                      [ngTemplateOutletContext]="getContext(row)">
-        </ng-container>
-        <ng-template #defaultCell>{{ row[col.key] }}</ng-template>
-      </td>
-      <td *ngIf="actions?.length">
-        <button *ngFor="let act of actions"
-                nz-button nzType="link"
-                (click)="act.handler(row, extraContext)">
-          <i nz-icon [nzType]="act.icon"></i>
-          {{ act.label }}
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</nz-table>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td *ngFor="let col of columns">
+          <ng-container
+            *ngIf="col.template; else defaultCell"
+            [ngTemplateOutlet]="col.template"
+            [ngTemplateOutletContext]="getContext(row)"
+          >
+          </ng-container>
+          <ng-template #defaultCell>{{ row[col.key] }}</ng-template>
+        </td>
+        <td *ngIf="actions?.length">
+          <button
+            *ngFor="let act of actions"
+            nz-button
+            nzType="link"
+            (click)="act.handler(row, extraContext)"
+          >
+            <i nz-icon [nzType]="act.icon"></i>
+            {{ act.label }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

@@ -1,6 +1,4 @@
-/* ====== F1 Dark Palette ====== */
 :root {
-    /* Base / superficies */
     --f1-bg:          #141414; // fondo principal (match ng-zorro dark)
     --f1-surface:     #1f1f1f; // cards / sider
     --f1-surface-2:   #262626; // submenús / bloques secundarios
@@ -37,27 +35,38 @@
     --ant-bg-color:                 var(--f1-bg);
     --ant-component-background:     var(--f1-surface);
   }
-  
-//   body {
-//     background: var(--f1-bg);
-//     color: var(--f1-text);
-//   }
-  
-//   .ant-card {
-//     background: var(--f1-surface);
-//     border-color: var(--f1-border);
-//     color: var(--f1-text);
-//   }
-  
-//   .f1-menu.ant-menu-dark {
-//     background: var(--f1-surface) !important;
-//     color: var(--f1-text) !important;
-//   }
-//   .f1-menu.ant-menu-dark .ant-menu-sub {
-//     background: var(--f1-surface-2) !important;
-//   }
-//   .f1-menu.ant-menu-dark .ant-menu-item-selected {
-//     background: var(--f1-primary) !important;
-//     color: #fff !important;
-//   }
+
+
+  .responsive-inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; // espacio entre items
+  align-items: center;
+
+  .form-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-label {
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+
+    .form-item {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .form-label {
+      margin-right: 8px;
+      margin-bottom: 0;
+      white-space: nowrap;
+    }
+  }
+}
+
   

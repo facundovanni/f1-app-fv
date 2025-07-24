@@ -2,27 +2,35 @@
   min-height: 100vh;
 }
 
+nz-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+nz-header {
+  padding: 0 16px;
+}
+
+
 .logo {
   height: 32px;
   margin: 16px;
 }
 
-nz-header {
-  padding: 0;
-
-
-}
-
 nz-content {
-  margin: 24px 16px 0;
+  overflow-x: hidden;
 }
 
-.inner-content {
+.content-container {
   padding: 24px;
-  min-height: 360px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
-/* Usa tus vars: --f1-red, --f1-text, --f1-grey */
 .f1-header-title {
   margin: 0;
   font-family: 'Orbitron', 'Roboto Condensed', sans-serif;
@@ -32,38 +40,14 @@ nz-content {
   display: inline-block;
   font-size: clamp(18px, 4vw, 32px);
   line-height: 1.1;
-
-  /* Barra roja inclinada atrás */
-  &::before {
-    content: '';
-    position: absolute;
-    left: -8px;
-    bottom: -6px;
-    width: 110%;
-    height: 6px;
-    background: var(--f1-red);
-    transform: skewX(-20deg);
-    z-index: -1;
-  }
-
-  /* Línea fina gris arriba (detalle) */
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    width: 60px;
-    height: 2px;
-    background: var(--f1-grey);
-    transform: skewX(-20deg);
-  }
-
-  .f1-accent {
-    color: var(--f1-red);
-  }
 }
 
 
 nz-footer {
   text-align: center;
+}
+
+nz-table, nz-card {
+  max-width: 100%;
+  overflow-x: auto;
 }

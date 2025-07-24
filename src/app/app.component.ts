@@ -18,7 +18,7 @@ import { TeamComponent } from './team/team.component';
 })
 export class AppComponent {
   menuTheme = signal<'dark' | 'light'>('dark');
-
+  isCollapsed = false;
   menus = [
     {
       level: 1,
