@@ -2,6 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.10.
 
+## Instrucciones para levantar el proyecto
+
+### Requisitos
+- Node.js 18+
+- Angular CLI 16.x
+- Yarn (opcional, también funciona con npm)
+
+### Instalación
+```bash
+yarn  # o npm install
+
+#### Levantar la app
+yarn start  # o npm start
+Navegar a `http://localhost:4200/`
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
