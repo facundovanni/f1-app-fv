@@ -13,7 +13,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ```bash
 yarn  # o npm install
 
-#### Levantar la app
+### Levantar la app
 yarn start  # o npm start
 Navegar a `http://localhost:4200/`
 
